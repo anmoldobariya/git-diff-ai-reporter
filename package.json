@@ -1,0 +1,88 @@
+{
+  "name": "git-diff-ai-reporter",
+  "displayName": "git-diff-ai-reporter",
+  "description": "Generate descriptive report based on current git diff",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.106.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "extensionDependencies": [
+    "vscode.git"
+  ],
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "aiGitReporter",
+          "title": "AI Git Reporter",
+          "icon": "$(git-commit)"
+        }
+      ]
+    },
+    "views": {
+      "aiGitReporter": [
+        {
+          "type": "webview",
+          "id": "usageMonitor",
+          "name": "Usage Monitor",
+          "icon": "$(pulse)",
+          "contextualTitle": "Groq API Usage"
+        },
+        {
+          "type": "webview",
+          "id": "reportGenerator",
+          "name": "Report Generator",
+          "icon": "$(file-text)",
+          "contextualTitle": "Generate Git Diff Report"
+        },
+        {
+          "type": "webview",
+          "id": "reportHistory",
+          "name": "Report History",
+          "icon": "$(history)",
+          "contextualTitle": "Past Reports"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "AI Git Reporter",
+      "properties": {
+        "gitDiffAiReporter.apiKey": {
+          "type": "string",
+          "default": "",
+          "description": "Groq API key for AI analysis (DEPRECATED: Use sidebar to manage API key securely)",
+          "markdownDescription": "**Deprecated**: Use the sidebar to manage your API key securely. Get an API key at [console.groq.com](https://console.groq.com)"
+        },
+        "aiGitReporter.quotaLimit": {
+          "type": "number",
+          "default": 300000,
+          "description": "Monthly token usage quota limit",
+          "markdownDescription": "Monthly token limit for Groq API usage. Default is 300,000 tokens per month."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.106.0",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "22.x",
+    "typescript-eslint": "^8.46.3",
+    "eslint": "^9.39.1",
+    "typescript": "^5.9.3",
+    "@vscode/test-cli": "^0.0.12",
+    "@vscode/test-electron": "^2.5.2"
+  }
+}
