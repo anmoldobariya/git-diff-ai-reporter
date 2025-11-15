@@ -3,6 +3,11 @@
   "displayName": "git-diff-ai-reporter",
   "description": "Generate descriptive report based on current git diff",
   "version": "0.0.1",
+  "publisher": "anmol0493",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/anmoldobariya/git-diff-ai-reporter.git"
+  },
   "engines": {
     "vscode": "^1.106.0"
   },
